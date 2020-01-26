@@ -1,0 +1,18 @@
+# isso abaixo é um Schema nao rota 
+# formato que o usuario vai receber os dados
+type User {
+    id: ID!, 
+    name: String!,
+    email: String!  
+}
+
+# ! dentro tudo que tiver aqui tem que ser do tipo usuario !
+# ! fora toda requisicao pro usuario retorna um array nao pode retornar nulo
+type Query {
+    users : [User!] !
+    user( id: ID! ) : User 
+}
+
+type Mutation {
+    createUser( name:String!, email: String!) : User 
+}

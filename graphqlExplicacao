@@ -1,0 +1,82 @@
+# API REST 
+
+GET /users 
+POST /users 
+PUT /users/:id 
+DELETE /users:id 
+
+-------- 
+
+# GRAPHQL 
+# unica rota que vc pode acessar o que quiser pelo corpo da requisicao 
+# pode trazer mais consultas ao mesmo tempo. 
+# usa propria biblioteca 
+# tem um insominia junto com ele
+
+POST /graphql 
+
+
+{
+    query TodosUsuarios {
+        users()
+    }
+    query todosPedidos {
+        orders() 
+    }
+}
+
+#diferenciando os metodos como quando quero editar ou apagar 
+query/mutation/subscription 
+
+query nunca altera nada no backend 
+mutation alterar, criar ou deletar informacao 
+subscription tras informacoes em tempo real (tipo socket)
+
+* nao sei se ta certo mas deve ser isso 
+{
+    mutation AlterarUsuario {
+        users()
+    }
+}
+
+* alterar o usuario 
+uma nunca requisicao faz duas coisas ao mesmo tempo 
+{
+    mutation updateUser{ //nome front 
+        // nome backend 
+        updateUpdate( id: 1,  ) {
+            nome : "Diego"
+        }
+    }
+    
+    query users {
+        users()
+    }
+
+}
+
+
+Ele passa mais responsabilidade para o fontend
+
+{
+    query users {
+        user ( { per_page : 20, page 2 : filter: {nome: {"stars_with" : "Diego }} }  {
+            id 
+            name
+            //relacionamento de grupos  
+            groups {
+                id 
+                title 
+            }
+        })
+    }
+}
+
+* overfathing problema de trazer informacoes que nao precisa no rest 
+* podemos evitar informacoes desnecessarias no componente 
+* cria documentacao de forma automatica no backend 
+* Schema ele guarda tudo todas as informacoes do graphql e assim ele consegui fazer a documentacao 
+
+
+Escolher framework para o graphql 
+graphql-yoga (para receber as request )
